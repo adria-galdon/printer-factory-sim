@@ -1,0 +1,118 @@
+{
+  "simulation": {
+    "daily_capacity": 10,
+    "warehouse_capacity": 5000
+  },
+  "materials": [
+    { "id": "kit_piezas",    "name": "Kit de piezas impresas", "unit": "unit" },
+    { "id": "extrusor",      "name": "Extrusor",               "unit": "unit" },
+    { "id": "electronica",   "name": "Kit electrónico",        "unit": "unit" },
+    { "id": "cama_caliente", "name": "Cama caliente",          "unit": "unit" },
+    { "id": "estructura",    "name": "Estructura metálica",    "unit": "unit" },
+    { "id": "cables",        "name": "Kit de cables",          "unit": "unit" }
+  ],
+  "printer_models": [
+    {
+      "id": "P3D-Classic",
+      "name": "P3D Classic",
+      "assembly_time_days": 0.5,
+      "demand_mean": 3,
+      "demand_variance": 1,
+      "bom": [
+        { "material_id": "kit_piezas",    "quantity_per_unit": 1 },
+        { "material_id": "extrusor",      "quantity_per_unit": 1 },
+        { "material_id": "electronica",   "quantity_per_unit": 1 },
+        { "material_id": "cama_caliente", "quantity_per_unit": 1 },
+        { "material_id": "estructura",    "quantity_per_unit": 1 },
+        { "material_id": "cables",        "quantity_per_unit": 1 }
+      ]
+    },
+    {
+      "id": "P3D-Pro",
+      "name": "P3D Pro",
+      "assembly_time_days": 1.0,
+      "demand_mean": 2,
+      "demand_variance": 1,
+      "bom": [
+        { "material_id": "kit_piezas",    "quantity_per_unit": 2 },
+        { "material_id": "extrusor",      "quantity_per_unit": 2 },
+        { "material_id": "electronica",   "quantity_per_unit": 1 },
+        { "material_id": "cama_caliente", "quantity_per_unit": 1 },
+        { "material_id": "estructura",    "quantity_per_unit": 1 },
+        { "material_id": "cables",        "quantity_per_unit": 2 }
+      ]
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "SUP-01",
+      "name": "Proveedor Genérico A",
+      "lead_time_days": 3,
+      "products": [
+        {
+          "id": "SP-001",
+          "material_id": "kit_piezas",
+          "description": "Kit piezas estándar",
+          "price_tiers": [
+            { "min_quantity": 1,    "unit_price": 15.00, "lot_size": 1,    "label": "unidad" },
+            { "min_quantity": 20,   "unit_price": 12.50, "lot_size": 20,   "label": "caja de 20" },
+            { "min_quantity": 1000, "unit_price":  9.00, "lot_size": 1000, "label": "palet de 1000" }
+          ]
+        },
+        {
+          "id": "SP-002",
+          "material_id": "extrusor",
+          "description": "Extrusor estándar",
+          "price_tiers": [
+            { "min_quantity": 1,  "unit_price": 25.00, "lot_size": 1,  "label": "unidad" },
+            { "min_quantity": 20, "unit_price": 20.00, "lot_size": 20, "label": "caja de 20" }
+          ]
+        },
+        {
+          "id": "SP-003",
+          "material_id": "cama_caliente",
+          "description": "Cama caliente estándar",
+          "price_tiers": [
+            { "min_quantity": 1,  "unit_price": 18.00, "lot_size": 1,  "label": "unidad" },
+            { "min_quantity": 20, "unit_price": 14.00, "lot_size": 20, "label": "caja de 20" }
+          ]
+        },
+        {
+          "id": "SP-004",
+          "material_id": "estructura",
+          "description": "Estructura metálica estándar",
+          "price_tiers": [
+            { "min_quantity": 1,  "unit_price": 30.00, "lot_size": 1,  "label": "unidad" },
+            { "min_quantity": 10, "unit_price": 25.00, "lot_size": 10, "label": "caja de 10" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUP-02",
+      "name": "Proveedor Premium B",
+      "lead_time_days": 1,
+      "products": [
+        {
+          "id": "SP-005",
+          "material_id": "electronica",
+          "description": "Kit electrónico premium",
+          "price_tiers": [
+            { "min_quantity": 1,  "unit_price": 45.00, "lot_size": 1,  "label": "unidad" },
+            { "min_quantity": 10, "unit_price": 38.00, "lot_size": 10, "label": "caja de 10" }
+          ]
+        },
+        {
+          "id": "SP-006",
+          "material_id": "cables",
+          "description": "Kit de cables premium",
+          "price_tiers": [
+            { "min_quantity": 1,   "unit_price": 8.00, "lot_size": 1,   "label": "unidad" },
+            { "min_quantity": 50,  "unit_price": 6.00, "lot_size": 50,  "label": "caja de 50" },
+            { "min_quantity": 500, "unit_price": 4.50, "lot_size": 500, "label": "palet de 500" }
+          ]
+        }
+      ]
+    }
+  ]
+}

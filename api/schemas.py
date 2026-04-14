@@ -121,7 +121,7 @@ class SimulationStateOut(_ORMBase):
 
 
 # ---------------------------------------------------------------------------
-# Manufacturing order (stub — full schemas added in M3)
+# Manufacturing order
 # ---------------------------------------------------------------------------
 
 class ManufacturingOrderOut(_ORMBase):
@@ -133,6 +133,20 @@ class ManufacturingOrderOut(_ORMBase):
     created_day: int
     released_day: Optional[int]
     completed_day: Optional[int]
+    printer_model: PrinterModelOut
+
+
+class OrderBOMBreakdownLineOut(BaseModel):
+    """Per-line material requirements for an order (BOM × quantity_ordered)."""
+
+    material_id: str
+    material_name: str
+    quantity_needed: int
+    quantity_in_stock: int
+
+
+class ManufacturingOrderDetailOut(ManufacturingOrderOut):
+    bom_breakdown: list[OrderBOMBreakdownLineOut]
 
 
 # ---------------------------------------------------------------------------

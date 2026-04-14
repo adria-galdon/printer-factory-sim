@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.database import init_db
-from api.routers import catalog, inventory, log, orders, simulation
+from api.routers import catalog, inventory, log, orders, purchase, simulation
 
 
 @asynccontextmanager
@@ -37,6 +37,7 @@ PREFIX = "/api/v1"
 app.include_router(catalog.router,    prefix=PREFIX)
 app.include_router(inventory.router,  prefix=PREFIX)
 app.include_router(orders.router,     prefix=PREFIX)
+app.include_router(purchase.router,   prefix=PREFIX)
 app.include_router(simulation.router, prefix=PREFIX)
 app.include_router(log.router,        prefix=PREFIX)
 

@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.database import init_db
-from api.routers import catalog, inventory, log, orders, purchase, simulation
+from api.routers import catalog, inventory, io, log, orders, purchase, simulation
 
 
 @asynccontextmanager
@@ -39,6 +39,7 @@ app.include_router(inventory.router,  prefix=PREFIX)
 app.include_router(orders.router,     prefix=PREFIX)
 app.include_router(purchase.router,   prefix=PREFIX)
 app.include_router(simulation.router, prefix=PREFIX)
+app.include_router(io.router,          prefix=PREFIX)
 app.include_router(log.router,        prefix=PREFIX)
 
 

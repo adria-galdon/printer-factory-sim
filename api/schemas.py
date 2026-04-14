@@ -188,6 +188,53 @@ class EventLogOut(_ORMBase):
 
 
 # ---------------------------------------------------------------------------
+# Import / export (full simulation snapshot)
+# ---------------------------------------------------------------------------
+
+class SimulationStateExportOut(BaseModel):
+    """Subset of simulation state for JSON export/import."""
+
+    current_day: int
+    daily_capacity: int
+    capacity_used_today: int
+
+
+class InventoryLevelOut(BaseModel):
+    material_id: str
+    quantity: int
+    warehouse_capacity: Optional[int] = None
+
+
+class ManufacturingOrderExportOut(BaseModel):
+    """Manufacturing order without nested printer_model (flat snapshot)."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    printer_model_id: str
+    quantity_ordered: int
+    quantity_completed: int
+    status: str
+    created_day: int
+    released_day: Optional[int]
+    completed_day: Optional[int]
+
+
+class ExportPayload(BaseModel):
+    simulation_state: SimulationStateExportOut
+    inventory: list[InventoryLevelOut]
+    manufacturing_orders: list[ManufacturingOrderExportOut]
+    purchase_orders: list[PurchaseOrderOut]
+    event_log: list[EventLogOut]
+
+
+class ImportPayload(ExportPayload):
+    """Same shape as ExportPayload (round-trip export → import)."""
+
+    pass
+
+
+# ---------------------------------------------------------------------------
 # Generic responses
 # ---------------------------------------------------------------------------
 
